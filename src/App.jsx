@@ -1,12 +1,12 @@
+import styled from "styled-components";
 import { Button, Card } from "@material-ui/core";
-import { Checkbox1 } from "formComponents/Checkbox1";
-import { TextField1 } from "formComponents/TextField1";
+import { TextField1 } from "FormComponents/TextField1";
 import { Form, Formik } from "formik";
 import { FormElementLayout } from "shared/styledComponents";
-import styled from "styled-components";
 import { initialValues } from "initialValues";
 import { validationSchema } from "validationSchema";
-import RadioGroup1 from "formComponents/RadioGroup1";
+import RadioButtons from "FormComponents/RadioButtons";
+import CheckBoxes from "FormComponents/CheckBoxes";
 
 const App = () => {
   return (
@@ -24,11 +24,16 @@ const App = () => {
                 <br />
                 <TextField1 placeholder="First name" name="firstName" />
                 <TextField1 placeholder="Surname" name="surname" />
-                <Checkbox1 label="Do you have children?" name="hasChildren" />
-                <Checkbox1 label="Do you like pets?" name="likesPets" />
-                <RadioGroup1
+                <CheckBoxes
+                  title="Your preferences"
+                  labels={[
+                    { label: "Do you have children?", name: "hasChildren" },
+                    { label: "Do you like pets?", name: "likesPets" },
+                  ]}
+                />
+                <RadioButtons
                   name="gender"
-                  label="What is your gender?"
+                  title="What is your gender?"
                   options={["male", "female"]}
                 />
                 <FormElementLayout>
@@ -54,10 +59,6 @@ const App = () => {
 const FormLayout = styled.div`
   width: 20rem;
   margin: 2rem auto;
-`;
-
-const RadioTextLayout = styled.div`
-  margin: 1rem 1rem 0.5rem 3.5rem;
 `;
 
 export default App;
