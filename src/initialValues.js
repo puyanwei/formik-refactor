@@ -3,5 +3,6 @@ export const initialValues = {
   surname: "",
   hasChildren: "",
   likesPets: "",
+  likesSex: "",
   gender: "",
 };

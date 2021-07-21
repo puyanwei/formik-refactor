@@ -7,6 +7,7 @@ import { validationSchema } from "validationSchema";
 import RadioButtons from "FormComponents/RadioButtons";
 import CheckBoxes from "FormComponents/CheckBoxes";
 import InputField from "FormComponents/InputField";
+import CheckBox from "FormComponents/CheckBox";
 
 const App = () => {
   return (
@@ -24,13 +25,10 @@ const App = () => {
                 <br />
                 <InputField placeholder="First name" name="firstName" />
                 <InputField placeholder="Surname" name="surname" />
-                <CheckBoxes
-                  title="Your preferences"
-                  labels={[
-                    { label: "Do you have children?", name: "hasChildren" },
-                    { label: "Do you like pets?", name: "likesPets" },
-                  ]}
-                />
+                <CheckBoxes title="Questions">
+                  <CheckBox label="Do you have children?" name="hasChildren" />
+                  <CheckBox label="Do you like pets?" name="likesPets" />
+                </CheckBoxes>
                 <RadioButtons
                   name="gender"
                   title="What is your gender?"
