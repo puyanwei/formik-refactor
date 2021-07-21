@@ -1,21 +1,19 @@
-import { Button, Card, Radio } from "@material-ui/core";
+import { Button, Card } from "@material-ui/core";
 import { Checkbox1 } from "formComponents/Checkbox1";
 import { TextField1 } from "formComponents/TextField1";
-import { Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
+import { FormElementLayout } from "shared/styledComponents";
 import styled from "styled-components";
+import { initialValues } from "initialValues";
 import { validationSchema } from "validationSchema";
+import RadioGroup1 from "formComponents/RadioGroup1";
 
 const App = () => {
   return (
     <div className="form">
       <br />
       <Formik
-        initialValues={{
-          firstName: "",
-          surname: "",
-          hasChildren: "",
-          gender: "",
-        }}
+        initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(data) => console.log("submit", data)}
       >
@@ -24,44 +22,15 @@ const App = () => {
             <Form>
               <Card variant="outlined">
                 <br />
-                <FormElementLayout>
-                  <TextField1
-                    placeholder="First name"
-                    name="firstName"
-                    type="input"
-                  />
-                </FormElementLayout>
-                <FormElementLayout>
-                  <TextField1
-                    placeholder="Surname"
-                    name="surname"
-                    type="input"
-                  />
-                </FormElementLayout>
-                <FormElementLayout>
-                  <Checkbox1
-                    label="Do you have children?"
-                    name="hasChildren"
-                    type="checkbox"
-                  />
-                </FormElementLayout>
-                <RadioTextLayout>What is your gender?</RadioTextLayout>
-                <RadioLayout>
-                  <Field
-                    name="gender"
-                    type="radio"
-                    value="male"
-                    as={Radio}
-                  ></Field>
-                  Male
-                  <Field
-                    name="gender"
-                    type="radio"
-                    value="female"
-                    as={Radio}
-                  ></Field>
-                  Female
-                </RadioLayout>
+                <TextField1 placeholder="First name" name="firstName" />
+                <TextField1 placeholder="Surname" name="surname" />
+                <Checkbox1 label="Do you have children?" name="hasChildren" />
+                <Checkbox1 label="Do you like pets?" name="likesPets" />
+                <RadioGroup1
+                  name="gender"
+                  label="What is your gender?"
+                  options={["male", "female"]}
+                />
                 <FormElementLayout>
                   <Button type="submit">submit</Button>
                 </FormElementLayout>
@@ -78,23 +47,17 @@ const App = () => {
   );
 };
 
-const FormLayout = styled.form`
+// https://github.com/benawad/react-formik-example/blob/master/src/FormFields/SelectFormField.tsx
+
+// https://youtu.be/yAUuZXcCwcw
+
+const FormLayout = styled.div`
   width: 20rem;
   margin: 2rem auto;
 `;
 
-const FormElementLayout = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 1rem;
-`;
-
 const RadioTextLayout = styled.div`
   margin: 1rem 1rem 0.5rem 3.5rem;
-`;
-
-const RadioLayout = styled.div`
-  margin: 0.5rem 1rem 1rem 3rem;
 `;
 
 export default App;
