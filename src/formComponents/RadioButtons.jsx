@@ -8,19 +8,18 @@ import {
 } from "@material-ui/core";
 import { FormLabel } from "@material-ui/core";
 
-const RadioGroup1 = ({ options, label = "", ...props }) => {
+const RadioGroup1 = ({ options, title = "", ...props }) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : "";
-
+  console.log(`meta`, meta);
   return (
     <RadioLayout>
-      {label && <FormLabel component="label">{label}</FormLabel>}
+      {title && <FormLabel component="label">{title}</FormLabel>}
       <RadioGroup {...field} {...props}>
         {options.map((option) => (
           <FormControlLabel value={option} control={<Radio />} label={option} />
         ))}
       </RadioGroup>
-
       <FormHelperText error={Boolean(errorText)}>{errorText}</FormHelperText>
     </RadioLayout>
   );

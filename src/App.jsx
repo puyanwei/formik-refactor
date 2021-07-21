@@ -1,12 +1,12 @@
+import styled from "styled-components";
 import { Button, Card } from "@material-ui/core";
-import { Checkbox1 } from "formComponents/Checkbox1";
-import { TextField1 } from "formComponents/TextField1";
 import { Form, Formik } from "formik";
 import { FormElementLayout } from "shared/styledComponents";
-import styled from "styled-components";
 import { initialValues } from "initialValues";
 import { validationSchema } from "validationSchema";
-import RadioGroup1 from "formComponents/RadioGroup1";
+import RadioButtons from "FormComponents/RadioButtons";
+import CheckBoxes from "FormComponents/CheckBoxes";
+import InputField from "FormComponents/InputField";
 
 const App = () => {
   return (
@@ -22,13 +22,18 @@ const App = () => {
             <Form>
               <Card variant="outlined">
                 <br />
-                <TextField1 placeholder="First name" name="firstName" />
-                <TextField1 placeholder="Surname" name="surname" />
-                <Checkbox1 label="Do you have children?" name="hasChildren" />
-                <Checkbox1 label="Do you like pets?" name="likesPets" />
-                <RadioGroup1
+                <InputField placeholder="First name" name="firstName" />
+                <InputField placeholder="Surname" name="surname" />
+                <CheckBoxes
+                  title="Your preferences"
+                  labels={[
+                    { label: "Do you have children?", name: "hasChildren" },
+                    { label: "Do you like pets?", name: "likesPets" },
+                  ]}
+                />
+                <RadioButtons
                   name="gender"
-                  label="What is your gender?"
+                  title="What is your gender?"
                   options={["male", "female"]}
                 />
                 <FormElementLayout>
@@ -47,17 +52,9 @@ const App = () => {
   );
 };
 
-// https://github.com/benawad/react-formik-example/blob/master/src/FormFields/SelectFormField.tsx
-
-// https://youtu.be/yAUuZXcCwcw
-
 const FormLayout = styled.div`
   width: 20rem;
   margin: 2rem auto;
-`;
-
-const RadioTextLayout = styled.div`
-  margin: 1rem 1rem 0.5rem 3.5rem;
 `;
 
 export default App;
